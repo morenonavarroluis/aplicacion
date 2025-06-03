@@ -5,7 +5,7 @@ from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
 from modelo.modelo import obtener_datos_usuarios  # Asegúrate de que este módulo esté correctamente configurado
 
-class Gestion(ttk.Frame):
+class MenuApp(ttk.Frame):
     def __init__(self,parent,controller):
         super().__init__(parent)
         self.controller = controller
@@ -56,47 +56,19 @@ class Gestion(ttk.Frame):
         label_href.bind("<Button-1>", lambda e: self.controller.show_frame("MenuApp"))  # Asignar evento de clic para volver al menú principal
 
          # label de href 
-        label_href = tk.Label(navbar, text="Pagos", bg="#4582EC", fg="white", font=("Arial", 12))
-        label_href.config(background="#4582EC")  # Cambia el color de fondo del label
+        label_href = tk.Label(navbar, text="pagos", bg="#4582EC", fg="white", font=("Arial", 12))
         label_href.pack(side=tk.LEFT, padx=10, pady=5)
+        label_href.config(background="#4582EC")  # Cambia el color de fondo del label
         label_href.bind("<Button-1>", lambda e: self.controller.show_frame("Gestion"))  # Asignar evento de clic para ir a la gestión de pagos
-        
  
  
  
     def _crear_widgets(self):
-        """Crea y empaqueta todos los widgets de la interfaz."""
-        
+        #crear boton para un modal
+       self.boton_modal = ttk.Button(self, text="Abrir Modal", command=self._abrir_modal)
+       self.boton_modal.pack(side="bottom", padx=10 , pady= 75)  # Coloca el botón en la esquina superior izquierda
 
-        
-         # Variable para el Combobox
-        self.dependencia_seleccionada = tk.StringVar()
-        
-        # Combobox
-        self.dependencia_seleccionada.set("Seleccionar...")  # Establece el texto inicial del Combobox
-        self.combobox_dependencia = ttk.Combobox(
-            self,
-            textvariable=self.dependencia_seleccionada,
-            values=self.columnas_combobox,
-            state="readonly",
-            bootstyle=PRIMARY
-        )
-        # Use place with absolute positioning (x, y) and no pack() call
-        self.combobox_dependencia.place(x=40, y=75, anchor="nw")
-        self.combobox_dependencia.bind("<<ComboboxSelected>>", self._filtrar_tabla)
-
-        # Botón para mostrar selección
-        boton_imprimir = ttk.Button(
-            self,
-            text="Imprimir Selección",
-            bootstyle=PRIMARY,
-            command=self._mostrar_seleccion
-        )
-        boton_imprimir.pack(side="bottom", padx=10, pady=10)
-
-        # Etiqueta de resultado
-        self.etiqueta_resultado = tk.Label(self, text="")
-        self.etiqueta_resultado.pack(pady=10)
+       
 
     def _configurar_tabla(self):
         """Configura la estructura de la tabla Treeview."""
@@ -106,18 +78,14 @@ class Gestion(ttk.Frame):
             show="headings",
             bootstyle=PRIMARY # Cambia el estilo a INFO para color azul suave
         )
+       
         self.tabla.heading("id", text="ID")
         self.tabla.heading("nombre", text="Nombre")
         self.tabla.heading("apellido", text="Apellido")
         self.tabla.heading("dependencias", text="Dependencia")
         self.tabla.heading("opcion", text="Opción")
 
-        # Configurar ancho de columnas (opcional, para mejor visualización)
-        self.tabla.column("id", width=50, anchor="center")
-        self.tabla.column("nombre", width=120, anchor="center")
-        self.tabla.column("apellido", width=120, anchor="center")
-        self.tabla.column("dependencias", width=150, anchor="center")
-        self.tabla.column("opcion", width=100, anchor="center")
+       
 
         self.tabla.pack(expand=True, fill="both", padx=10, pady=10)  # Ajusta el tamaño al espacio disponible
 
@@ -144,5 +112,58 @@ class Gestion(ttk.Frame):
             self.etiqueta_resultado.config(text=f"Seleccionaste: {seleccion}")
         else:
             self.etiqueta_resultado.config(text="No se ha seleccionado ninguna dependencia.")
+    def _abrir_modal(self):
+        """Abre un modal con un Combobox para seleccionar una dependencia."""
+        modal = ttk.Toplevel(self)
+        modal.title("Registro de menu")
+
+        modal.geometry("600x500")
+
+        # Etiqueta para el Combobox
+        label = ttk.Label(modal, text="Registro de menu", font=("Arial", 16)) 
+        label.pack(pady=10)
+
+        label_usuario = ttk.Label(modal, text="Sopa:")
+        label_usuario.pack(pady=(0, 5), anchor='w')
+        self.entry_usuario = ttk.Entry(modal, bootstyle=PRIMARY)  # Guardar como self.entry_usuario
+        self.entry_usuario.pack(fill=tk.X, pady=(0, 10))
+
+        label_usuario = ttk.Label(modal, text="Proteina:")
+        label_usuario.pack(pady=(0, 5), anchor='w')
+        self.entry_usuario = ttk.Entry(modal, bootstyle=PRIMARY)  # Guardar como self.entry_usuario
+        self.entry_usuario.pack(fill=tk.X, pady=(0, 10))
 
 
+        label_usuario = ttk.Label(modal, text="Contorno:")
+        label_usuario.pack(pady=(0, 5), anchor='w')
+        self.entry_usuario = ttk.Entry(modal, bootstyle=PRIMARY)  # Guardar como self.entry_usuario
+        self.entry_usuario.pack(fill=tk.X, pady=(0, 10))
+
+
+
+        label_usuario = ttk.Label(modal, text="Ensalada:")
+        label_usuario.pack(pady=(0, 5), anchor='w')
+        self.entry_usuario = ttk.Entry(modal, bootstyle=PRIMARY)  # Guardar como self.entry_usuario
+        self.entry_usuario.pack(fill=tk.X, pady=(0, 10))
+
+
+        label_usuario = ttk.Label(modal, text="Jugo:")
+        label_usuario.pack(pady=(0, 5), anchor='w')
+        self.entry_usuario = ttk.Entry(modal, bootstyle=PRIMARY)  # Guardar como self.entry_usuario
+        self.entry_usuario.pack(fill=tk.X, pady=(0, 10))
+
+
+        label_usuario = ttk.Label(modal, text="Postre:")
+        label_usuario.pack(pady=(0, 5), anchor='w')
+        self.entry_usuario = ttk.Entry(modal, bootstyle=PRIMARY)  # Guardar como self.entry_usuario
+        self.entry_usuario.pack(fill=tk.X, pady=(0, 10))
+
+        # Botón para cerrar el modal
+        boton_cerrar = ttk.Button(modal, text="Cerrar", command=modal.destroy)
+        boton_cerrar.pack(pady=10)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = MenuApp(parent=root, controller=None)  # Cambia 'None' por tu controlador si es necesario
+    app.pack(expand=True, fill="both")
+    root.mainloop()

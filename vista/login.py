@@ -11,13 +11,6 @@ class LoginApp(ttk.Frame):  # Cambiado el nombre de la clase a PascalCase (conve
     def __init__(self,parent,controller):
         super().__init__(parent)
         self.controller = controller
-        # self.ventana = tk.Tk()
-        # self.ventana.title("Gestión de Productos")
-        # self.ventana.geometry("600x400")
-
-        # Frame principal para organizar los widgets
-        # frame_login = ttk.Frame(self.ventana, padding="20 20 20 20")
-        # frame_login.pack(expand=True, fill=tk.BOTH)
 
         # Título
         label_titulo = ttk.Label(self, text="Acceso al Sistema", font=("Helvetica", 16, "bold"), bootstyle=PRIMARY)
@@ -25,20 +18,20 @@ class LoginApp(ttk.Frame):  # Cambiado el nombre de la clase a PascalCase (conve
 
         # Campo de Usuario
         label_usuario = ttk.Label(self, text="Usuario:")
-        label_usuario.pack(pady=(0, 5), anchor='w')
+        label_usuario.pack(pady=(0, 5), anchor='center')  # Alineación a la izquierda
         self.entry_usuario = ttk.Entry(self, bootstyle=PRIMARY)  # Guardar como self.entry_usuario
-        self.entry_usuario.pack(fill=tk.X, pady=(0, 10))
+        self.entry_usuario.pack(fill=tk.Y, pady=(0, 10))
         self.entry_usuario.focus()  # Poner el foco en el campo de usuario al iniciar
 
         # Campo de Contraseña
         label_contrasena = ttk.Label(self, text="Contraseña:")
-        label_contrasena.pack(pady=(0, 5), anchor='w')
+        label_contrasena.pack(pady=(0, 5), anchor='center')
         self.entry_contrasena = ttk.Entry(self, show="*", bootstyle=PRIMARY)  # Guardar como self.entry_contrasena
-        self.entry_contrasena.pack(fill=tk.X, pady=(0, 20))
+        self.entry_contrasena.pack(fill=tk.Y, pady=(0, 20))
 
         # Botón de Inicio de Sesión
         boton_login = ttk.Button(self, text="Iniciar Sesión", command=self.accion_login, bootstyle=SUCCESS)
-        boton_login.pack(fill=tk.X, ipady=5)
+        boton_login.pack(fill=tk.Y, ipady=5)
 
     def accion_login(self):
         """Maneja el evento de clic del botón de inicio de sesión."""
@@ -56,7 +49,7 @@ class LoginApp(ttk.Frame):  # Cambiado el nombre de la clase a PascalCase (conve
             # self.ventana.destroy()
             # gestion = Gestion() 
             # gestion.run()  # Si la clase Gestion tiene un método run, llámalo para iniciar la nueva ventana
-            self.controller.show_frame('Gestion')
+            self.controller.show_frame('MenuApp')  # Cambia a la pantalla del menú principal
         else:
             messagebox.showerror("Error de Inicio de Sesión", "Usuario o contraseña incorrectos.")
             self.entry_contrasena.delete(0, tk.END)  # Acceder a través de self
