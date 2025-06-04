@@ -3,14 +3,14 @@ from tkinter import messagebox
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
-from modelo.modelo import obtener_datos_usuarios  # Asegúrate de que este módulo esté correctamente configurado
+from modelo.modelo import obtener_datos_menu  # Asegúrate de que este módulo esté correctamente configurado
 
 class MenuApp(ttk.Frame):
     def __init__(self,parent,controller):
         super().__init__(parent)
         self.controller = controller
         
-        self.datos_originales = obtener_datos_usuarios()
+        self.datos_originales = obtener_datos_menu()
         self.columnas_combobox = sorted(list(set([row[3] for row in self.datos_originales])))  # Eliminar duplicados y ordenar
 
         self.navbar()  # Llamar al método para crear la barra de navegación
@@ -56,7 +56,7 @@ class MenuApp(ttk.Frame):
         label_href.bind("<Button-1>", lambda e: self.controller.show_frame("MenuApp"))  # Asignar evento de clic para volver al menú principal
 
          # label de href 
-        label_href = tk.Label(navbar, text="pagos", bg="#4582EC", fg="white", font=("Arial", 12))
+        label_href = tk.Label(navbar, text="Pagos", bg="#4582EC", fg="white", font=("Arial", 12))
         label_href.pack(side=tk.LEFT, padx=10, pady=5)
         label_href.config(background="#4582EC")  # Cambia el color de fondo del label
         label_href.bind("<Button-1>", lambda e: self.controller.show_frame("Gestion"))  # Asignar evento de clic para ir a la gestión de pagos
@@ -74,16 +74,26 @@ class MenuApp(ttk.Frame):
         """Configura la estructura de la tabla Treeview."""
         self.tabla = ttk.Treeview(
             self,
-            columns=("id", "nombre", "apellido", "dependencias", "opcion"),
+            columns=("Id", "Sopa", "contorno", "jugo", "proteina", "ensalada", "postre"),
             show="headings",
             bootstyle=PRIMARY # Cambia el estilo a INFO para color azul suave
         )
        
-        self.tabla.heading("id", text="ID")
-        self.tabla.heading("nombre", text="Nombre")
-        self.tabla.heading("apellido", text="Apellido")
-        self.tabla.heading("dependencias", text="Dependencia")
-        self.tabla.heading("opcion", text="Opción")
+        self.tabla.heading("Id", text="ID")
+        self.tabla.heading("Sopa", text="Sopa")
+        self.tabla.heading("contorno", text="Contorno")
+        self.tabla.heading("jugo", text="Jugo")
+        self.tabla.heading("proteina", text="Proteína")
+        self.tabla.heading("ensalada", text="Ensalada")
+        self.tabla.heading("postre", text="Postre")
+        #cnfiguracion de la tabla
+        self.tabla.column("Id", width=50, anchor="center")
+        self.tabla.column("Sopa", width=200, anchor="center")
+        self.tabla.column("contorno", width=200, anchor="center")   
+        self.tabla.column("jugo", width=200, anchor="center")
+        self.tabla.column("proteina", width=200, anchor="center")
+        self.tabla.column("ensalada", width=200, anchor="center")
+        self.tabla.column("postre", width=200, anchor="center")
 
        
 

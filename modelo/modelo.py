@@ -53,3 +53,37 @@ def obtener_datos_usuarios():
             cursor.close()
         if conn:
             conn.close()
+
+
+def obtener_datos_menu():
+    """
+    Ejecuta la consulta SQL y devuelve los datos de los usuarios.
+    Maneja la conexión a la base de datos de forma segura.
+    """
+    conn = None # Inicializa conn a None
+    cursor = None # Inicializa cursor a None
+    try:
+        # CORRECTO: Llama a la función 'obtener_conexion()'
+        conn = obtener_conexion()
+        if conn is None: # Si la conexión falla, obtener_conexion() devuelve None
+            print("Error: No se pudo establecer la conexión a la base de datos.")
+            return []
+
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT id_menu, sopa, proteina, contorno, ensalada, jugo,postre FROM menu;
+        """)
+        datos = cursor.fetchall()
+        return datos
+    except Exception as e:
+        print(f"Error al obtener datos de la base de datos: {e}")
+        return [] # Retorna una lista vacía en caso de error
+    finally:
+        # Asegúrate de cerrar el cursor y la conexión si se crearon
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+def registrar_usuario():
+   pass  # Aquí iría la lógica para registrar un usuario, si es necesario

@@ -11,27 +11,27 @@ class LoginApp(ttk.Frame):  # Cambiado el nombre de la clase a PascalCase (conve
     def __init__(self,parent,controller):
         super().__init__(parent)
         self.controller = controller
-
+    
         # Título
         label_titulo = ttk.Label(self, text="Acceso al Sistema", font=("Helvetica", 16, "bold"), bootstyle=PRIMARY)
-        label_titulo.pack(pady=(0, 20))
+        label_titulo.pack(pady=(100, 20), anchor='center')  # Centrar el título
 
         # Campo de Usuario
         label_usuario = ttk.Label(self, text="Usuario:")
-        label_usuario.pack(pady=(0, 5), anchor='center')  # Alineación a la izquierda
+        label_usuario.pack(pady=(0, 5), anchor='center')  # Centrar la etiqueta de usuario
         self.entry_usuario = ttk.Entry(self, bootstyle=PRIMARY)  # Guardar como self.entry_usuario
-        self.entry_usuario.pack(fill=tk.Y, pady=(0, 10))
-        self.entry_usuario.focus()  # Poner el foco en el campo de usuario al iniciar
+        self.entry_usuario.pack(pady=(0, 10), padx=20)  # Centrar el campo de entrada
 
         # Campo de Contraseña
         label_contrasena = ttk.Label(self, text="Contraseña:")
-        label_contrasena.pack(pady=(0, 5), anchor='center')
+        label_contrasena.pack(pady=(0, 5), anchor='center')  # Centrar la etiqueta de contraseña
         self.entry_contrasena = ttk.Entry(self, show="*", bootstyle=PRIMARY)  # Guardar como self.entry_contrasena
-        self.entry_contrasena.pack(fill=tk.Y, pady=(0, 20))
+        self.entry_contrasena.pack(pady=(0, 20), padx=20)  # Centrar el campo de entrada
 
         # Botón de Inicio de Sesión
         boton_login = ttk.Button(self, text="Iniciar Sesión", command=self.accion_login, bootstyle=SUCCESS)
-        boton_login.pack(fill=tk.Y, ipady=5)
+        boton_login.pack(pady=5, padx=20)  # Centrar el botón
+
 
     def accion_login(self):
         """Maneja el evento de clic del botón de inicio de sesión."""

@@ -9,7 +9,7 @@ class BaseApp(tkinter.Tk):
     def __init__(self):
         super().__init__()
         self.title("Gestión de Pagos")
-        self.geometry("600x400")
+        self.geometry("900x600")
 
         # Configurar grid para que el frame ocupe todo el espacio
         self.grid_rowconfigure(0, weight=1)  # Cambiado a 0 para que el frame principal ocupe la fila 0
