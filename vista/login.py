@@ -12,25 +12,27 @@ class LoginApp(ttk.Frame):  # Cambiado el nombre de la clase a PascalCase (conve
         super().__init__(parent)
         self.controller = controller
     
+        
+        
+                # Crear un marco con borde
+        frame_borde = ttk.Frame(self, borderwidth=4, relief="groove", padding=20)
+        frame_borde.pack(padx=20, pady=140)
         # Título
-        label_titulo = ttk.Label(self, text="Acceso al Sistema", font=("Helvetica", 16, "bold"), bootstyle=PRIMARY)
-        label_titulo.pack(pady=(100, 20), anchor='center')  # Centrar el título
-
+        label_titulo = ttk.Label(frame_borde, text="Acceso al Sistema", font=("Helvetica", 16, "bold"), bootstyle=PRIMARY)
+        label_titulo.pack(pady=(0, 20), anchor='center')  # Centrar el título
         # Campo de Usuario
-        label_usuario = ttk.Label(self, text="Usuario:")
+        label_usuario = ttk.Label(frame_borde, text="Usuario:")
         label_usuario.pack(pady=(0, 5), anchor='center')  # Centrar la etiqueta de usuario
-        self.entry_usuario = ttk.Entry(self, bootstyle=PRIMARY)  # Guardar como self.entry_usuario
+        self.entry_usuario = ttk.Entry(frame_borde, bootstyle=PRIMARY)  # Guardar como self.entry_usuario
         self.entry_usuario.pack(pady=(0, 10), padx=20)  # Centrar el campo de entrada
-
         # Campo de Contraseña
-        label_contrasena = ttk.Label(self, text="Contraseña:")
+        label_contrasena = ttk.Label(frame_borde, text="Contraseña:")
         label_contrasena.pack(pady=(0, 5), anchor='center')  # Centrar la etiqueta de contraseña
-        self.entry_contrasena = ttk.Entry(self, show="*", bootstyle=PRIMARY)  # Guardar como self.entry_contrasena
+        self.entry_contrasena = ttk.Entry(frame_borde, show="*", bootstyle=PRIMARY)  # Guardar como self.entry_contrasena
         self.entry_contrasena.pack(pady=(0, 20), padx=20)  # Centrar el campo de entrada
-
         # Botón de Inicio de Sesión
-        boton_login = ttk.Button(self, text="Iniciar Sesión", command=self.accion_login, bootstyle=SUCCESS)
-        boton_login.pack(pady=5, padx=20)  # Centrar el botón
+        self.boton_login = ttk.Button(frame_borde, text="Iniciar Sesión", command=self.accion_login, bootstyle=PRIMARY)
+        self.boton_login.pack()
 
 
     def accion_login(self):
